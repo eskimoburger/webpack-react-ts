@@ -1,8 +1,10 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+
 module.exports = {
   mode: "development",
-  entry: "./main.tsx",
+  entry: "./src/main.tsx",
   devtool: "inline-source-map",
   output: {
     path: path.join(__dirname, "/dist"),
@@ -10,7 +12,9 @@ module.exports = {
   },
   devtool: "inline-source-map",
   devServer: {
-    static: "./dist",
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
   },
   module: {
     rules: [
@@ -30,8 +34,16 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"],
   },
   plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "public/data",
+          to: "data",
+        },
+      ],
+    }),
     new HtmlWebpackPlugin({
-      template: "./index.html",
+      template: path.join(__dirname, "public", "index.html"),
     }),
   ],
 };
