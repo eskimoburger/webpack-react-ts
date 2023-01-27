@@ -1,47 +1,32 @@
-import { Table } from 'antd';
-import React from 'react'
+import { Table } from "antd";
 
-const AntDTable = () => {
-  return (
-    <Table dataSource={dataSource} columns={columns} />
-
-  )
+const columns = [
+  {
+    title: "ID",
+    dataIndex: "consumer_id",
+    key: "consumer",
+  },
+  {
+    title: "Name",
+    dataIndex: "name",
+    key: "name",
+  },
+  {
+    title: "MeterID",
+    dataIndex: "meter_code",
+    key: "meter_code",
+  },
+  {
+    title: "Address",
+    dataIndex: "address",
+    key: "address",
+  },
+];
+interface DataTableProp {
+  dataSource: any;
 }
+const AntDTable = ({ dataSource }: DataTableProp) => {
+  return <Table dataSource={dataSource} columns={columns} />;
+};
 
-export default AntDTable
-
-
-
-const dataSource = [
-    {
-      key: '1',
-      name: 'Mike',
-      age: 32,
-      address: '10 Downing Street',
-    },
-    {
-      key: '2',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street',
-    },
-  ];
-  
-  const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-  ];
-  
+export default AntDTable;
